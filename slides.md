@@ -7,6 +7,7 @@ drawings:
   persist: false
 mdc: true
 download: true
+monaco: true
 ---
 
 # Angular Performance Optimizations
@@ -22,14 +23,21 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
+
 # Measurements
 
 - Lines of Code / file count
 - Build duration
 - Initial bundle size
 - Lighthouse performance score
+  - First Contentful Paint
+  - Largest Contentful Paint
+  - Total Blocking Time
+  - Cumulative Layout Shift
+  - Speed Index
 
 ---
+
 # Optimization steps
 
 - App structure
@@ -40,50 +48,112 @@ The last comment block of each slide will be treated as slide notes. It will be 
 - Server-side rendering 
 
 ---
+
 # App structure
 
 - Choose base components wisely (MatToolbar, MatCard, MatSidenav)
-- Do not nest components through Routes
 - Do not use TailwindCSS `@apply` in SCSS or CSS files
+- Use CSS instead of JavaScript
 
 ---
+
 # Standalone components
 
-- No more `NgModule`
-- Fewer files and less code
-- Newer Angular Feature require standalone components
+- Available since Angular 15
+
+<div class="flex flex-row justify-around">
+
+```ts
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+})
+export class LoginComponent {}
+
+@NgModule({
+  declarations: [LoginComponent],
+  imports: [CommonModule, MatButtonModule],
+  exports: [LoginComponent]
+})
+export class LoginModule {}
+
+
+```
+
+```ts
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  standalone: true,
+  imports: [NgIf, MatButtonModule],
+})
+export class LoginComponent {}
+```
+
+</div>
+
+<!--
+- Fewer files and less code. ~2% smaller initial bundle size
+- Some new Angular Feature require standalone components
+-->
 
 ---
+
 # Lazy loading
 
 - Lazy load routes
-- Lazy load animations `provideAnimationsAsync()`
-- Defer component loading with `@defer` (only works for standalone components)
+- Lazy load animations `provideAnimationsAsync()` (>= Angular 17)
+- Defer component loading with `@defer` (only works for standalone components) (>= Angular 17)
+
+<!--
+- `provideAnimationsAsync()` since Angular 17
+- `@defer`
+-->
 
 ---
+
 # Image loading
 
-- Use `NgOptimizedImage` directive
+- Use `NgOptimizedImage` directive (>= Angular 15)
 - Adjust image size to render size
 - Add `preconnect` instructions
 
 ---
+
 # esbuild
 
-- Use `browser-esbuild` as drop-in replacement or `application` builder
+- Switch from webpack to esbuild (50% build time improvement)
+- Use `browser-esbuild` as drop-in replacement or `application` builder (>= Angular 17)
+
+<!--
+- webpack (javascript)
+- esbuild (Go)
+-->
 
 ---
+
 # Server-side rendering (SSR)
+
+<div v-click>
 
 - For static content prerender HTML during build time (static site generation (SSG))
 - For dynamic content render HTML on server (server-side rendering (SSR))
 
+</div>
+
+<!--
+- < Angular 17: nguniversal
+- >= Angular 17: built into Angular CLI using Application builder
+-->
+
 ---
+
 # Next steps
 
 - OnPush Change detection
-- New control flow syntax (`@if()`, `@for()`, `@switch()`)
+- New control flow syntax with `@if()`, `@for()`, `@switch()`
 - Angular signals
+- Zoneless change detection
 
 ---
 # What is Slidev?
@@ -102,23 +172,6 @@ Slidev is a slides maker and presenter designed for developers, consist of the f
 <br>
 
 Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
 
 <!--
 Here is another comment.
@@ -470,11 +523,6 @@ database "MySql" {
 </div>
 
 [Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
----
-src: ./pages/multiple-entries.md
-hide: false
----
 
 ---
 layout: center
