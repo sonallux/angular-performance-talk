@@ -12,5 +12,8 @@
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
     "slidev-theme-datev-scc": "^1.0.0"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.64"
   }
 }

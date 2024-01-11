@@ -18,6 +18,8 @@ How to elevate the performance of an Angular App to the next level.
   <img src="/angular_wordmark_gradient.png" alt="Angular">
 </div>
 
+<div class="absolute bottom-0 mb-16"><a href="https://github.com/sonallux"><mdi-github /> github.com/sonallux</a></div>
+
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
@@ -52,7 +54,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 # App structure
 
 - Choose base components wisely (MatToolbar, MatCard, MatSidenav)
-- Do not use TailwindCSS `@apply` in SCSS or CSS files
+- Do not use TailwindCSS `@apply` in CSS files
 - Use CSS instead of JavaScript
 
 ---
@@ -76,8 +78,6 @@ export class LoginComponent {}
   exports: [LoginComponent]
 })
 export class LoginModule {}
-
-
 ```
 
 ```ts
@@ -104,11 +104,6 @@ export class LoginComponent {}
 - Lazy load routes
 - Lazy load animations `provideAnimationsAsync()` (>= Angular 17)
 - Defer component loading with `@defer` (only works for standalone components) (>= Angular 17)
-
-<!--
-- `provideAnimationsAsync()` since Angular 17
-- `@defer`
--->
 
 ---
 
@@ -154,6 +149,21 @@ export class LoginComponent {}
 - New control flow syntax with `@if()`, `@for()`, `@switch()`
 - Angular signals
 - Zoneless change detection
+
+---
+
+# Fragen ?
+
+<ul class="mt-10">
+  <li><a href="https://github.com/sonallux/angular-music"><mdi-github /> Angular Music App</a></li>
+  <li><a href="https://web.dev/articles/vitals?hl=de#core-web-vitals"><mdi-file-document />Core Web Vitals</a></li>
+  <li><a href="https://angular.dev/guide/defer"><mdi-angular /> Deferrable Views</a></li>
+  <li><a href="https://angular.dev/guide/image-optimization"><mdi-angular /> NgOptimizedImage</a></li>
+  <li><a href="https://angular.dev/guide/ssr"><mdi-angular /> Server-side rendering</a></li>
+  <li><a href="https://angular.dev/guide/hydration"><mdi-angular /> Hydration</a></li>
+  <li><a href="https://angular.dev/guide/prerendering"><mdi-angular /> Prerendering (SSG)</a></li>
+  <li><a href="https://github.com/tastejs/angular-movies"><mdi-github /> Angular Movies App</a></li>
+</ul>
 
 ---
 # What is Slidev?
