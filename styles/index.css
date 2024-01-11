@@ -1,0 +1,24 @@
+/* reduce table padding */
+.slidev-layout td, .slidev-layout th {
+    padding: 0.4rem;
+}
+
+.slidev-layout th {
+    font-weight: bolder;
+}
+
+/* move foot notes to bottom of page */
+.slidev-layout .footnote-item p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.slidev-layout .footnotes-sep {
+    @apply hidden;
+}
+
+.slidev-layout .footnotes {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 4rem
+}

@@ -14,6 +14,7 @@
     "slidev-theme-datev-scc": "^1.0.0"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.64"
+    "@iconify-json/mdi": "^1.1.64",
+    "@iconify-json/simple-icons": "^1.1.87"
   }
 }
