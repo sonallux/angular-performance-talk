@@ -48,6 +48,29 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 ---
 
+# Content
+
+- Application
+- Measurements
+- Optimization steps
+  - General
+  - Standalone components
+  - Lazy loading
+  - Image loading
+  - esbuild
+  - Server-side rendering
+- Results
+
+---
+
+# Angular Music
+
+<div class="px-16">
+  <img src="angular-music.png" alt="Angular Music">
+</div>
+
+---
+
 # Measurements
 
 - Lines of code
@@ -70,32 +93,13 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 ---
 
-# Angular Music
-
-<div class="px-16">
-  <img src="angular-music.png" alt="Angular">
-</div>
-
----
-
-# Optimization steps
-
-<!-- Remove this page??? -->
-
-- App structure
-- Standalone components
-- Lazy loading
-- Image loading
-- esbuild
-- Server-side rendering 
-
----
-
-# App structure
+# General
 
 - Choose base components wisely (MatToolbar, MatCard, MatSidenav)
 - Do not use TailwindCSS `@apply` in CSS files
 - Use CSS instead of JavaScript
+- Reduce Backend request count and payload
+- Cache JavaScript and CSS bundles
 
 <!-- 
 Prefer CSS media queries instead of using BreakpointObserver
@@ -222,13 +226,6 @@ export class LoginComponent {}
 
 # Server-side rendering (SSR) [^1]
 
-<div v-click>
-
-- For static content prerender HTML during build time (static site generation (SSG))
-- For dynamic content render HTML on server (server-side rendering (SSR))
-
-</div>
-
 <!--
 - < Angular 17: nguniversal
 - >= Angular 17: built into Angular CLI using Application builder
@@ -238,18 +235,107 @@ export class LoginComponent {}
 
 ---
 
+# Client-side rendering
+
+```mermaid  {scale: 0.7, mirrorActors: false}
+sequenceDiagram
+    actor Bob
+    participant Browser
+    participant Webserver
+    participant Backend
+    Bob->>+Browser: Visit angular.io
+    Browser->>+Webserver: GET angular.io
+    Webserver-->>-Browser: Response index.html
+    Browser-->>Bob: Rendered index.html
+    Browser->>+Webserver: GET angular.io/bundle.js
+    Webserver-->>-Browser: Response bundle.js
+    Browser->+Backend: Fetch data
+    Backend-->>-Browser: Returns data
+    Note over Browser: Browser creates DOM nodes
+    Browser-->>-Bob: Rendered Angular App
+```
+
+<!--
+Templates are rendered on the Browser
+-->
+
+---
+
+# Server-side rendering (SSR)
+
+```mermaid  {scale: 0.7, mirrorActors: false}
+sequenceDiagram
+    actor Bob
+    participant Browser
+    participant Webserver
+    participant Backend
+    Bob->>+Browser: Visit angular.io
+    Browser->>+Webserver: GET angular.io
+    Webserver->>+Backend: Fetch data
+    Backend-->>-Webserver: Data
+    Note over Webserver: Webserver creates HTML nodes
+    Webserver-->>-Browser: Response index.html
+    Browser-->>Bob: Rendered index.html
+    Browser->>+Webserver: GET angular.io/bundle.js
+    Webserver-->>-Browser: Response bundle.js
+    Browser-->>-Bob: Fully rendered and interactive Page
+```
+
+<!--
+Templates are rendered on the Server
+-->
+
+---
+
+# Static Side generation (SSG)
+
+```mermaid  {scale: 0.7, mirrorActors: false}
+sequenceDiagram
+    actor Bob
+    participant Browser
+    participant Webserver
+    participant Build as Build process
+    Note over Build: Build process creates HTML nodes
+    Build->>Webserver: index.html
+    Bob->>+Browser: Visit angular.io
+    Browser->>+Webserver: GET angular.io
+    Webserver-->>-Browser: Response index.html
+    Browser-->>Bob: Rendered index.html
+    Browser->>+Webserver: GET angular.io/bundle.js
+    Webserver-->>-Browser: Response bundle.js
+    Browser-->>-Bob: Fully rendered and interactive Page
+```
+
+<!--
+Templates are rendered during the build process of the App
+-->
+
+---
+
+# Server-side rendering (SSR) [^1]
+
+| Stats               | Relative change |
+|---------------------|-----------------|
+| Build time          | + 50%           |
+| Lines of Code       | + 3%            |
+| Initial bundle size | + 2%            |
+
+[^1]: https://github.com/sonallux/angular-music/pull/110
+
+---
+
 # Lighthouse Score
 
 | Page     | Baseline | Standalone | Lazy loading | Image loading | esbuild | SSR   |
 |----------|----------|------------|--------------|---------------|---------|-------|
-| Home     | 81       | 82         | 83           | 85            | 85      | 88    |
-| Browse   | 73       | 71         | 78           | 75            | 75      | 77    |
-| Category | 87       | 82         | 88           | 86            | 88      | 75    |
-| Playlist | 91       | 93         | 93           | 93            | 92      | 97    |
-| Album    | 92       | 92         | 93           | 93            | 93      | 99    |
-| Artist   | 91       | 89         | 91           | 91            | 92      | 98    |
+| Home     | 81       | 76         | 79           | 84            | 84      | 87    |
+| Browse   | 73       | 74         | 81           | 78            | 85      | 75    |
+| Category | 87       | 87         | 88           | 88            | 88      | 74    |
+| Playlist | 91       | 92         | 93           | 93            | 93      | 96    |
+| Album    | 92       | 91         | 93           | 93            | 93      | 98    |
+| Artist   | 91       | 91         | 91           | 92            | 91      | 98    |
 |          |          |            |              |               |         |       |
-| Average  | 85,83    | 84,83      | 87,67        | 87,17         | 87,50   | 89,00 |
+| Average  | 85,83    | 85,17      | 87,50        | 88,00         | 89,00   | 88,00 |
 
 <!--
 - Desktop mode vs mobile mode
