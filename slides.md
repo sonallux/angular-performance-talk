@@ -95,7 +95,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 # General
 
-- Choose base components wisely (MatToolbar, MatCard, MatSidenav)
+- Choose base components wisely (`MatToolbar`, `MatCard`, `MatSidenav`)
 - Do not use TailwindCSS `@apply` in CSS files
 - Use CSS instead of JavaScript
 - Reduce Backend request count and payload
@@ -158,6 +158,10 @@ export class LoginComponent {}
 
 [^1]: https://github.com/sonallux/angular-music/pull/106
 
+<!--
+- Some new Angular Feature require standalone components
+-->
+
 ---
 
 # Lazy loading [^1]
@@ -182,9 +186,9 @@ export class LoginComponent {}
 
 # Image loading [^1]
 
-- Use `NgOptimizedImage` directive (>= Angular 15)
 - Adjust image size to render size
 - Add `preconnect` instructions
+- Use `NgOptimizedImage` directive (>= Angular 15)
 
 <div class="mt-4" v-click>
 
@@ -202,7 +206,7 @@ export class LoginComponent {}
 
 # esbuild [^1]
 
-- Switch from webpack to esbuild
+- Switch bundler from webpack to esbuild
 - Use `browser-esbuild` as drop-in replacement or `application` builder (>= Angular 17)
 
 <div class="mt-4" v-click>
@@ -243,11 +247,11 @@ sequenceDiagram
     participant Browser
     participant Webserver
     participant Backend
-    Bob->>+Browser: Visit angular.io
-    Browser->>+Webserver: GET angular.io
+    Bob->>+Browser: Visit angular.dev
+    Browser->>+Webserver: GET angular.dev
     Webserver-->>-Browser: Response index.html
     Browser-->>Bob: Rendered index.html
-    Browser->>+Webserver: GET angular.io/bundle.js
+    Browser->>+Webserver: GET angular.dev/bundle.js
     Webserver-->>-Browser: Response bundle.js
     Browser->+Backend: Fetch data
     Backend-->>-Browser: Returns data
@@ -269,14 +273,14 @@ sequenceDiagram
     participant Browser
     participant Webserver
     participant Backend
-    Bob->>+Browser: Visit angular.io
-    Browser->>+Webserver: GET angular.io
+    Bob->>+Browser: Visit angular.dev
+    Browser->>+Webserver: GET angular.dev
     Webserver->>+Backend: Fetch data
     Backend-->>-Webserver: Data
     Note over Webserver: Webserver creates HTML nodes
     Webserver-->>-Browser: Response index.html
     Browser-->>Bob: Rendered index.html
-    Browser->>+Webserver: GET angular.io/bundle.js
+    Browser->>+Webserver: GET angular.dev/bundle.js
     Webserver-->>-Browser: Response bundle.js
     Browser-->>-Bob: Fully rendered and interactive Page
 ```
@@ -297,17 +301,17 @@ sequenceDiagram
     participant Build as Build process
     Note over Build: Build process creates HTML nodes
     Build->>Webserver: index.html
-    Bob->>+Browser: Visit angular.io
-    Browser->>+Webserver: GET angular.io
+    Bob->>+Browser: Visit angular.dev
+    Browser->>+Webserver: GET angular.dev
     Webserver-->>-Browser: Response index.html
     Browser-->>Bob: Rendered index.html
-    Browser->>+Webserver: GET angular.io/bundle.js
+    Browser->>+Webserver: GET angular.dev/bundle.js
     Webserver-->>-Browser: Response bundle.js
     Browser-->>-Bob: Fully rendered and interactive Page
 ```
 
 <!--
-Templates are rendered during the build process of the App
+Templates are rendered during the build process of the App. Not tried.
 -->
 
 ---
@@ -321,6 +325,12 @@ Templates are rendered during the build process of the App
 | Initial bundle size | + 2%            |
 
 [^1]: https://github.com/sonallux/angular-music/pull/110
+
+<!--
+- Server bundle must be built too
+- Workaround for some APIs that are not available on Server during rendering
+- Code for hydration is needed
+-->
 
 ---
 
@@ -339,9 +349,9 @@ Templates are rendered during the build process of the App
 
 <!--
 - Desktop mode vs mobile mode
-- More throttling on mobile mode
-- Mobile mode: nearly no improvement in Lighthouse score
-- Category SSR Score: Playlist grid column count is calculated via JS and fixed to 3 cols with SSR &rarr; big cumulative layout shift
+- Values are from desktop mode
+- More throttling on mobile mode: nearly no improvement in Lighthouse score
+- Browse and Category SSR Score: Playlist grid column count is calculated via JS and fixed to 3 cols with SSR &rarr; big cumulative layout shift
 -->
 
 ---

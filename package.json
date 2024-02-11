@@ -8,13 +8,11 @@
     "export": "slidev export"
   },
   "dependencies": {
-    "@slidev/cli": "^0.46.1",
-    "@slidev/theme-default": "latest",
-    "@slidev/theme-seriph": "latest",
-    "slidev-theme-datev-scc": "^1.0.0"
+    "@slidev/cli": "0.47.4",
+    "slidev-theme-datev-scc": "1.0.0"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.64",
-    "@iconify-json/simple-icons": "^1.1.87"
+    "@iconify-json/mdi": "1.1.64",
+    "@iconify-json/simple-icons": "1.1.90"
   }
 }
