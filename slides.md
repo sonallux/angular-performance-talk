@@ -204,6 +204,134 @@ export class LoginComponent {}
 
 ---
 
+# Built-in control flow [^1]
+
+- Available since Angular 17 in developer preview
+
+[^1]: https://github.com/sonallux/angular-music/pull/162
+
+---
+
+# Built-in control flow - `@if` block
+
+<div class="flex flex-row justify-around">
+
+```html
+<h1 *ngIf="isLoggedIn; else loggedOut">
+  Hello User!
+</h1>
+<ng-template #loggedOut>
+  Please log in!
+</ng-template>
+```
+
+```html
+@if (isLoggedIn) {
+  <h1>Hello User!</h1>
+} @else {
+  <h1>Please log in!</h1>
+}
+```
+
+</div>
+
+<!--
+- `@else if (condition)` also possible
+-->
+
+---
+
+# Built-in control flow - `@for` block
+
+<div class="flex flex-row justify-around">
+
+```html
+<ul>
+  <li *ngFor="let item of items">{{ item.name }}</li>
+  <li *ngIf="items.length === 0">There are no items</li>
+</ul>
+```
+
+```html
+<ul>
+  @for (item of items; track item.name) {
+    <li>{{ item.name }}</li>
+  } @empty {
+    <li>There are no items</li>
+  }
+</ul>
+```
+
+</div>
+
+---
+
+# Built-in control flow - `@switch` block
+
+<div class="flex flex-row justify-around">
+
+```html
+<ng-container [ngSwitch]="orderStatus">
+  <span *ngSwitchCase="'PLACED'">
+    Order received, order processing started
+  </span>
+  <span *ngSwitchCase="'SHIPPED'">
+    Order shipped
+  </span>
+  <span *ngSwitchCase="'DELIVERED'">
+    Order delivered! Enjoy your purchase
+  </span>
+  <span *ngSwitchCase="'CANCELED'">
+    Order canceled
+  </span>
+  <span *ngSwitchDefault>
+    Invalid order status: {{orderStatus}}
+  </span>
+</ng-container>
+```
+
+```html
+@switch (orderStatus) {
+  @case ('PLACED') {
+    <span>Order received, order processing started</span>
+  }
+  @case ('SHIPPED') {
+    <span>Order shipped</span>
+  }
+  @case ('DELIVERED') {
+    <span>Order delivered! Enjoy your purchase</span>
+  }
+  @case ('CANCELED') {
+    <span>Order canceled</span>
+  }
+  @default {
+    <span>Invalid order status: {{orderStatus}}</span>
+  }
+}
+```
+
+</div>
+
+---
+
+# Built-in control flow [^1]
+
+- Available since Angular 17 in developer preview
+
+<div class="mt-4" >
+
+| Stats               | Relative change |
+|---------------------|-----------------|
+| Build time          | + 2%            |
+| Lines of Code       | + 2%            |
+| Initial bundle size | + 1%            |
+
+</div>
+
+[^1]: https://github.com/sonallux/angular-music/pull/162
+
+---
+
 # esbuild [^1]
 
 - Switch bundler from webpack to esbuild
@@ -359,7 +487,6 @@ Templates are rendered during the build process of the App. Not tried.
 # Next steps
 
 - OnPush change detection
-- New control flow syntax with `@if()`, `@for()`, `@switch()`
 - Angular signals
 - Zoneless change detection
 
