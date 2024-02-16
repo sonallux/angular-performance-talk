@@ -24,7 +24,8 @@ layout: center
   <img src="LighthouseScore.png" alt="Angular">
 </div>
 
-<!-- 
+<!--
+SeveltKit, Next.js, 
 Lighthouse: Performance, Accessibility, SEO
 -->
 
@@ -57,6 +58,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
   - Standalone components
   - Lazy loading
   - Image loading
+  - Built-in Control flow
   - esbuild
   - Server-side rendering
 - Results
@@ -152,7 +154,7 @@ export class LoginComponent {}
 
 | Stats               | Relative change |
 |---------------------|-----------------|
-| Build time          | 0%              |
+| Build time          | + 2%            |
 | Lines of code       | - 2%            |
 | Initial bundle size | - 2%            |
 
@@ -174,7 +176,7 @@ export class LoginComponent {}
 
 | Stats               | Relative change |
 |---------------------|-----------------|
-| Build time          | - 4%            |
+| Build time          | - 5%            |
 | Lines of Code       | 0%              |
 | Initial bundle size | - 33%           |
 
@@ -207,6 +209,7 @@ export class LoginComponent {}
 # Built-in control flow [^1]
 
 - Available since Angular 17 in developer preview
+- Replaces the existing `NgIf`, `NgFor` and `NgSwitch` Directives
 
 [^1]: https://github.com/sonallux/angular-music/pull/162
 
@@ -316,19 +319,22 @@ export class LoginComponent {}
 
 # Built-in control flow [^1]
 
-- Available since Angular 17 in developer preview
-
 <div class="mt-4" >
 
 | Stats               | Relative change |
 |---------------------|-----------------|
-| Build time          | + 2%            |
-| Lines of Code       | + 2%            |
-| Initial bundle size | + 1%            |
+| Build time          | - 2%            |
+| Lines of Code       | + 1%            |
+| Initial bundle size | + 6%            |
 
 </div>
 
 [^1]: https://github.com/sonallux/angular-music/pull/162
+
+<!--
+- More performance optimized code
+- @for is significant faster than *ngFor
+-->
 
 ---
 
@@ -341,7 +347,7 @@ export class LoginComponent {}
 
 | Stats               | Relative change |
 |---------------------|-----------------|
-| Build time          | - 49%           |
+| Build time          | - 46%           |
 | Lines of Code       | 0%              |
 | Initial bundle size | + 8%            |
 
@@ -448,7 +454,7 @@ Templates are rendered during the build process of the App. Not tried.
 
 | Stats               | Relative change |
 |---------------------|-----------------|
-| Build time          | + 50%           |
+| Build time          | + 55%           |
 | Lines of Code       | + 3%            |
 | Initial bundle size | + 2%            |
 
@@ -464,18 +470,19 @@ Templates are rendered during the build process of the App. Not tried.
 
 # Lighthouse Score
 
-| Page     | Baseline | Standalone | Lazy loading | Image loading | esbuild | SSR   |
-|----------|----------|------------|--------------|---------------|---------|-------|
-| Home     | 81       | 76         | 79           | 84            | 84      | 87    |
-| Browse   | 73       | 74         | 81           | 78            | 85      | 75    |
-| Category | 87       | 87         | 88           | 88            | 88      | 74    |
-| Playlist | 91       | 92         | 93           | 93            | 93      | 96    |
-| Album    | 92       | 91         | 93           | 93            | 93      | 98    |
-| Artist   | 91       | 91         | 91           | 92            | 91      | 98    |
-|          |          |            |              |               |         |       |
-| Average  | 85,83    | 85,17      | 87,50        | 88,00         | 89,00   | 88,00 |
+| Page     | Baseline | Standalone | Lazy loading | Image loading | Control flow | esbuild | SSR |
+|----------|----------|------------|--------------|---------------|--------------|---------|-----|
+| Home     | 89       | 88         | 87           | 88            | 89           | 89      | 89  |
+| Browse   | 61       | 69         | 63           | 82            | 76           | 76      | 75  |
+| Category | 87       | 81         | 88           | 87            | 87           | 87      | 79  |
+| Playlist | 93       | 93         | 93           | 93            | 93           | 93      | 95  |
+| Album    | 93       | 93         | 93           | 93            | 93           | 93      | 98  |
+| Artist   | 90       | 91         | 93           | 91            | 92           | 91      | 97  |
+|          |          |            |              |               |              |         |     |
+| Average  | 86       | 86         | 86           | 89            | 88           | 88      | 89  |
 
 <!--
+- Measurement taken on GitHub Actions
 - Desktop mode vs mobile mode
 - Values are from desktop mode
 - More throttling on mobile mode: nearly no improvement in Lighthouse score
