@@ -98,7 +98,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 # General
 
 - Choose base components wisely (`MatToolbar`, `MatCard`, `MatSidenav`)
-- Do not use TailwindCSS `@apply` in CSS files
+- Do not use Components CSS files when using TailwindCSS
 - Use CSS instead of JavaScript
 - Reduce Backend request count and payload
 - Cache JavaScript and CSS bundles
@@ -146,6 +146,7 @@ export class LoginComponent {}
 
 <!--
 - Some new Angular Feature require standalone components
+- Since Angular Material 17.1 all components are also standalone
 -->
 
 ---
@@ -506,6 +507,7 @@ Templates are rendered during the build process of the App. Not tried.
   <li><a href="https://web.dev/articles/vitals?hl=de#core-web-vitals"><mdi-file-document />Core Web Vitals</a></li>
   <li><a href="https://angular.dev/guide/defer"><mdi-angular /> Deferrable Views</a></li>
   <li><a href="https://angular.dev/guide/image-optimization"><mdi-angular /> NgOptimizedImage</a></li>
+  <li><a href="https://angular.dev/guide/templates/control-flow"><mdi-angular /> Built-in control flow</a></li>
   <li><a href="https://angular.dev/guide/ssr"><mdi-angular /> Server-side rendering</a></li>
   <li><a href="https://angular.dev/guide/hydration"><mdi-angular /> Hydration</a></li>
   <li><a href="https://angular.dev/guide/prerendering"><mdi-angular /> Prerendering (SSG)</a></li>
