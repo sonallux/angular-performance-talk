@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@iconify-json/mdi": "1.1.64",
-    "@iconify-json/simple-icons": "1.1.90"
+    "@iconify-json/simple-icons": "1.1.90",
+    "playwright-chromium": "^1.41.2"
   }
 }
