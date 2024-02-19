@@ -8,10 +8,6 @@ drawings:
 mdc: true
 download: true
 monaco: true
-# description
-# In diesem Vortrag möchte ich euch zeigen, wie ihr mit Hilfe der neuesten Feature aus den letzten Angular Versionen die Performance eurer App verbessern könnt. Dabei wird es nicht nur um Lazy Loading gehen, sondern wir werden uns auch fortgeschrittene Themen wie Server-side Rendering (SSR) anschauen. Wir werden den gesamten Entwicklungsprozess betrachten, denn es gibt an vielen Stellen Neuerungen und mögliche Performanceverbesserungen.
-# biography
-# Jonas ist Fullstack Software Engineer bei Arbeitnehmer Online und außerdem einer der X Maintainer des Inner-Source Projekts DACKL.
 ---
 
 # Angular Performance Optimizations
@@ -21,7 +17,7 @@ layout: center
 ---
 
 <div class="px-16">
-  <img src="LighthouseScore.png" alt="Angular">
+  <img src="/LighthouseScore.png" alt="Angular">
 </div>
 
 <!--
@@ -68,7 +64,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 # Angular Music
 
 <div class="px-16">
-  <img src="angular-music.png" alt="Angular Music">
+  <img src="/angular-music.png" alt="Angular Music">
 </div>
 
 ---
