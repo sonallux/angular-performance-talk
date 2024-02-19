@@ -4,6 +4,7 @@ title: Angular Performance Optimizations
 info: How to elevate the performance of an Angular App to the next level.
 lineNumbers: false
 drawings:
+  enabled: dev
   persist: false
 mdc: true
 download: true
@@ -40,7 +41,6 @@ How to elevate the performance of an Angular App to the next level 🚀
 <MySocialLinks />
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
 
 ---
@@ -171,13 +171,27 @@ export class LoginComponent {}
 
 <div class="mt-4" v-click>
 
+```html
+@defer (on idle) {
+  <large-component />
+} @placeholder (minimum 500ms) {
+  <p>Placeholder content</p>
+}
+```
+
+</div>
+
+[^1]: https://github.com/sonallux/angular-music/pull/107
+
+---
+
+# Lazy loading [^1]
+
 | Stats               | Relative change |
 |---------------------|-----------------|
 | Build time          | - 5%            |
 | Lines of Code       | 0%              |
 | Initial bundle size | - 33%           |
-
-</div>
 
 [^1]: https://github.com/sonallux/angular-music/pull/107
 
